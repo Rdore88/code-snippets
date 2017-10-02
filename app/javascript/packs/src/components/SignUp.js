@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {connect} from 'redux-react';
+import {connect} from 'react-redux';
 import {setUser} from '../actions/actions.js'
 
 export default class SignUp extends Component{

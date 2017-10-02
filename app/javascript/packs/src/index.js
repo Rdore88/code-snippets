@@ -8,10 +8,8 @@ import Home from './components/Home';
 import SignUp from './components/SignUp';
 import LogIn from './components/LogIn'
 import {Provider} from 'react-redux';
-import store from './store.js';
 
 ReactDOM.render(
-  <Provider store={store}>
     <BrowserRouter>
       <BaseLayout>
         <Switch>
@@ -21,6 +19,5 @@ ReactDOM.render(
         </Switch>
       </BaseLayout>
     </BrowserRouter>
-  </Provider>
 , document.getElementById('root'));
 registerServiceWorker();
