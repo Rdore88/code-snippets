@@ -4,12 +4,17 @@ import './index.css';
 import BaseLayout from './components/BaseLayout';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {createStore, applyMiddleware} from 'redux';
+import reducer from './reducers/index.js'
 import Home from './components/Home';
 import SignUp from './components/SignUp';
 import LogIn from './components/LogIn'
 import {Provider} from 'react-redux';
 
+const store = createStore(reducer)
+
 ReactDOM.render(
+  <Provider store={store}>
     <BrowserRouter>
       <BaseLayout>
         <Switch>
@@ -19,5 +24,6 @@ ReactDOM.render(
         </Switch>
       </BaseLayout>
     </BrowserRouter>
+  </Provider>
 , document.getElementById('root'));
 registerServiceWorker();
