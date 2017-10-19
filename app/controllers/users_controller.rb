@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+before_action :authorize!, only: [:destroy]
 def create
   @user = User.new(user_params)
   @user.secure_random

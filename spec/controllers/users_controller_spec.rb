@@ -18,4 +18,25 @@ RSpec.describe UsersController, type: :controller do
     expect(json_body["message"]).to eq("Please enter all correct information")
   end
 
+  it "wont create a user if password are different" do
+    post :create, params: bad_params
+    assert response.ok?
+    expect(json_body["message"]).to eq("Please enter all correct information")
+  end
+
+  it "destroy a user" do
+    post :create, params: params
+    assert response.ok?
+    expect(User.find_by(email: "robby@dore.com")).to be_present
+    user = User.find_by(email: "robby@dore.com")
+    request.headers["HTTP_AUTHORIZATION"] = user.authorization_token
+    delete :destroy, params: {id: user.id}
+    expect(json_body["message"]).to eq("Account Deleted")
+  end
+
+  it "will not destroy an account unless they are logged in" do
+    delete :destroy, params: {id: 1}
+    expect(json_body["message"]).to eq("Please log in")
+  end
+
 end
