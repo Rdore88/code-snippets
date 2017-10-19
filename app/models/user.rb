@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :password_confirmation, presence: true
   validates :email, uniqueness: true
+  validates :email, presence: true
 
   def secure_random
     self.authorization_token = SecureRandom.hex(64)
