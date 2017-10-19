@@ -6,7 +6,7 @@ def create
   if @user.save
     render json: {status: "success", redirect: true, auth_token: @user.authorization_token, }
   else
-    render json: {status: "failed", redirect: false, message: "Please enter all correct information"}
+    render json: {errors: @user.organize_errors, status: "failed", redirect: false, message: "Please enter all correct information"}
   end
 end
 

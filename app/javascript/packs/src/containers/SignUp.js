@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 class SignUp extends Component {
   constructor(props){
     super(props)
-    console.log(this.props);
     this.state = {
       username: "",
       email: "",
@@ -48,7 +47,11 @@ class SignUp extends Component {
       return response.json()
     }).then(
       (result) => {
-        this.props.history.push('/')
+        if (result.redirect) {
+          this.props.history.push('/')
+        } else {          
+          alert(result.errors)
+        }
         })
   }
 

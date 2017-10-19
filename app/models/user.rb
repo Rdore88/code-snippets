@@ -15,4 +15,12 @@ class User < ApplicationRecord
     self.save
   end
 
+  def organize_errors
+  errors_to_return = []
+  self.errors.messages.each do |key, value|
+    errors_to_return.push(" #{key} #{value[0]}")
+  end
+  errors_to_return
+end
+
 end
