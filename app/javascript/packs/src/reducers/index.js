@@ -5,7 +5,7 @@ const initial_state = {
   code_snippets: []
 }
 
-export const reducer = function(state = initial_state, action){
+const reducer = function(state = initial_state, action){
   switch (action.type) {
     case "SET_USER":
       return update(state, {
@@ -23,3 +23,5 @@ export const reducer = function(state = initial_state, action){
       return state;
   }
 }
+
+export default reducer

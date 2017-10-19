@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import {createStore, applyMiddleware} from 'redux';
 import reducer from './reducers/index.js'
 import Home from './components/Home';
-import SignUp from './components/SignUp';
+import SignUp from './containers/SignUp';
 import LogIn from './components/LogIn'
 import {Provider} from 'react-redux';
 

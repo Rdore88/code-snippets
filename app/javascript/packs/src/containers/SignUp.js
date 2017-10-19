@@ -2,12 +2,12 @@ import React, {Component} from 'react'
 import {setUser} from '../actions/actions.js';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {browserHistory} from 'react-router'
+import PropTypes from 'prop-types';
 
 class SignUp extends Component {
   constructor(props){
     super(props)
-
+    console.log(this.props);
     this.state = {
       username: "",
       email: "",
@@ -48,15 +48,15 @@ class SignUp extends Component {
       return response.json()
     }).then(
       (result) => {
-        console.log(result);
-      })
+        this.props.history.push('/')
+        })
   }
 
   render(){
     return(
       <form onSubmit={this.handleSubmit} className="signup-form">
         <label htmlFor="name">Name:</label>
-        <input type="text" name="name" onChange={this.handleName} value={this.sate.username} />
+        <input type="text" name="name" onChange={this.handleName} value={this.state.name} />
         <label htmlFor="email">Email:</label>
         <input type="text" name="email" onChange={this.handleEmail} value={this.state.email} />
         <label htmlFor="password">Password:</label>
@@ -64,14 +64,12 @@ class SignUp extends Component {
         <label htmlFor="password_confirmation">Password Confirmation:</label>
         <input type="password" name="password_confirmation" onChange={this.handlePasswordConfirmation} value={this.state.password_confirmation} />
         <br />
-        <input type="submit" value="submit" />
+        <input type="submit" value="Submit" />
       </form>
     )
   }
 
 }
-
-
 
 
 function mapStateToProps(state){
@@ -86,5 +84,4 @@ function mapDispatchToProps(dispatch){
     setUser: setUser
   }, dispatch)
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
