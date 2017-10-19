@@ -5,7 +5,7 @@ const initial_state = {
   code_snippets: []
 }
 
-const reducer = function(state = initial_state, action){
+export const reducer = function(state = initial_state, action){
   switch (action.type) {
     case "SET_USER":
       return update(state, {
