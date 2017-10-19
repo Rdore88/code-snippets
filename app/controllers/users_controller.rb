@@ -4,7 +4,7 @@ def create
   @user = User.new(user_params)
   @user.secure_random
   if @user.save
-    render json: {status: "success", redirect: true, auth_token: @user.authorization_token, }
+    render json: {status: "success", redirect: true, user: {username: @user.username, auth_token: @user.authorization_token} }
   else
     render json: {errors: @user.organize_errors, status: "failed", redirect: false, message: "Please enter all correct information"}
   end

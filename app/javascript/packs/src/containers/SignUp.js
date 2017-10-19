@@ -48,8 +48,9 @@ class SignUp extends Component {
     }).then(
       (result) => {
         if (result.redirect) {
+          this.props.setUser(result.user);
           this.props.history.push('/')
-        } else {          
+        } else {
           alert(result.errors)
         }
         })
