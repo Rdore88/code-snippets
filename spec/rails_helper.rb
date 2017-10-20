@@ -39,6 +39,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.include JsonBody, type: :controller
+  config.include UserFactory, tpye: :controller
 
   config.infer_spec_type_from_file_location!
 
