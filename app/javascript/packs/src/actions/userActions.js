@@ -34,7 +34,6 @@ const createUser = (userInfo) =>{
       .then(res => {
         return res.json()
       }).then(json => {
-        console.log("JSON", json);
         if (json.status === "failed"){
           return dispatch(setUserErrors(json.errors))
         } else {
