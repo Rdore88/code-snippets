@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {setUser} from '../actions/actions.js';
+import {setUser} from '../../actions/actions.js';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';

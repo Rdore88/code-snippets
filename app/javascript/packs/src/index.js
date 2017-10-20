@@ -6,9 +6,9 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import {createStore, applyMiddleware} from 'redux';
 import reducer from './reducers/index.js'
-import Home from './components/Home';
-import SignUp from './containers/SignUp';
-import LogIn from './components/LogIn'
+import Home from './containers/home/Home';
+import SignUp from './containers/Signup/SignUp';
+import LogIn from './containers/Login/LogIn'
 import {Provider} from 'react-redux';
 
 const store = createStore(reducer)
