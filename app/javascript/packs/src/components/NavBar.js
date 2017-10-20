@@ -1,16 +1,22 @@
 import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
-import '../styles/NavBar.css'
+import '../styles/NavBar.css';
+import {connect} from 'react-redux';
+import {logout} from '../actions/actions.js'
+import {bindActionCreators} from 'redux'
 
-export default class NavBar extends Component {
+class NavBar extends Component {
   constructor(props){
     super(props)
-
-    this.state = {username: this.props.username, admin: this.props.admin}
   }
+
+  handleLogout = e => {
+    this.props.logout()
+  }
+
   render(){
     let changeNavBar;
-    if (!this.state.username) {
+    if (!this.props.user) {
       changeNavBar =
       <div>
         <NavLink activeClassName="selected" className="navlink" to="/signup">Sign Up</NavLink>
@@ -19,16 +25,28 @@ export default class NavBar extends Component {
     } else {
       changeNavBar =
       <div>
-        <NavLink activeClassName="selected" className="navlink" to="/logout">Log Out</NavLink>
+        <button onClick={this.handleLogout}>Logout</button>
       </div>
     }
     return (
       <nav className="upperNavbar">
-        <div className="navs">
-          <NavLink activeClassName="selected" className="navlink" to="/">Home</NavLink>
-        </div>
-          {changeNavBar}
+        <NavLink activeClassName="selected" className="navlink" to="/">Home</NavLink>
+        {changeNavBar}
       </nav>
     )
   }
 }
+
+function mapStateToProps(state){
+  return{
+    user: state.current_user
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+    logout: logout
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

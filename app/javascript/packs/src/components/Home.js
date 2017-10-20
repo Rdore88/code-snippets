@@ -5,14 +5,10 @@ import {connect} from 'react-redux';
 class Home extends Component {
   constructor(props){
     super(props)
-    console.log(this.props);
   }
   render(){
     return(
-      <div className='home'>
         <p>This is home!!!</p>
-        <p>Welcome {this.props.user.username}</p>
-      </div>
     )
   }
 }
@@ -25,7 +21,6 @@ function  mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-
   })
 }
 
