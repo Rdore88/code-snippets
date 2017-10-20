@@ -16,7 +16,7 @@ class Home extends Component {
 
 function mapStateToProps(state){
   return{
-    user: state.current_user,
+    user: state.current_user
 
   }
 }
