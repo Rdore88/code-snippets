@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
-export default class LogIn extends Component{
+class LogIn extends Component{
   constructor(props){
     super(props)
 
@@ -8,16 +10,12 @@ export default class LogIn extends Component{
       email: '',
       password: ''
     }
-
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handlePasswordChange(e){
+  handlePassword = (e) =>{
     this.setState({password: e.target.value})
   }
-  handleEmailChange(e){
+  handleEmail = (e) => {
     this.setState({email: e.target.value})
   }
 
@@ -59,3 +57,17 @@ export default class LogIn extends Component{
     )
   }
 }
+
+function mapStateToProps(state){
+  return{
+
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn)

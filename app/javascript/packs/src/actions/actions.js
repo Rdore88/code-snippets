@@ -1,9 +1,11 @@
 import {
   createUser,
-  logout
+  logout,
+  userLogin
 } from './userActions'
 
 export {
   createUser,
-  logout
+  logout,
+  userLogin
 }

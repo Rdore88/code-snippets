@@ -45,7 +45,20 @@ const createUser = (userInfo) =>{
   }
 }
 
+const userLogin = (userInfo) => {
+  return(dispatch) => {
+    let options = {
+      method: "POST",
+      body: JSON.stringify(userInfo)
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  }
+}
+
 export {
   logout,
-  createUser
+  createUser,
+  userLogin
 }
