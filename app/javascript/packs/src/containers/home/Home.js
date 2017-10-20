@@ -6,6 +6,13 @@ class Home extends Component {
     super(props)
   }
 
+  componentDidMount(){
+    console.log("WillMount", this.props);
+    if (!this.props.user) {
+      this.props.history.push('/signup')
+    }
+  }
+
   render(){
     return(
       <p>This is Home!</p>
@@ -16,7 +23,7 @@ class Home extends Component {
 
 function mapStateToProps(state){
   return{
-    user: state.current_user
+    user: state.user.current_user
 
   }
 }
