@@ -17,4 +17,4 @@ const codeSnippets = function(state = initial_state, action){
   }
 }
 
-export default codeSnippets
+export {codeSnippets}

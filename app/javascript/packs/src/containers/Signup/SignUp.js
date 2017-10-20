@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {setUser} from '../../actions/actions.js';
+import {createUser} from '../../actions/actions.js';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -33,43 +33,44 @@ class SignUp extends Component {
 
   handleSubmit = e =>{
     e.preventDefault()
-    var payload = {
-      user:
-        this.state
+    let userObj = {
+      user: this.state
     }
-    fetch('/api/users', {
-      method: 'POST',
-      body: JSON.stringify(payload),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then( (response) => {
-      return response.json()
-    }).then(
-      (result) => {
-        if (result.redirect) {
-          this.props.setUser(result.user);
-          this.props.history.push('/')
-        } else {
-          alert(result.errors)
-        }
-        })
+    this.props.createUser(userObj)
+  }
+  componentDidUpdate(){
+    if (this.props.user) {
+      this.props.history.push('/')
+    }
   }
 
   render(){
+    let errorMessage=[];
+    if (this.props.userErrors) {
+      errorMessage = this.props.userErrors.map(function (error){
+        return(
+          <p>{error}</p>
+        )
+      })
+    }
     return(
-      <form onSubmit={this.handleSubmit} className="signup-form">
-        <label htmlFor="name">Name:</label>
-        <input type="text" name="name" onChange={this.handleName} value={this.state.name} />
-        <label htmlFor="email">Email:</label>
-        <input type="text" name="email" onChange={this.handleEmail} value={this.state.email} />
-        <label htmlFor="password">Password:</label>
-        <input type="password" name="password" onChange={this.handlePassword} value={this.state.password} />
-        <label htmlFor="password_confirmation">Password Confirmation:</label>
-        <input type="password" name="password_confirmation" onChange={this.handlePasswordConfirmation} value={this.state.password_confirmation} />
-        <br />
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="submit-page">
+        <div>
+          {errorMessage}
+        </div>
+        <form onSubmit={this.handleSubmit} className="signup-form">
+          <label htmlFor="name">Name:</label>
+          <input type="text" name="name" onChange={this.handleName} value={this.state.username} />
+          <label htmlFor="email">Email:</label>
+          <input type="text" name="email" onChange={this.handleEmail} value={this.state.email} />
+          <label htmlFor="password">Password:</label>
+          <input type="password" name="password" onChange={this.handlePassword} value={this.state.password} />
+          <label htmlFor="password_confirmation">Password Confirmation:</label>
+          <input type="password" name="password_confirmation" onChange={this.handlePasswordConfirmation} value={this.state.password_confirmation} />
+          <br />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     )
   }
 
@@ -77,15 +78,16 @@ class SignUp extends Component {
 
 
 function mapStateToProps(state){
-  const user = state.current_user
+  console.log("state!", state);
   return{
-    user: user
+    user: state.user.current_user,
+    userErrors: state.user.user_errors
   }
 }
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-    setUser: setUser
+    createUser: createUser
   }, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

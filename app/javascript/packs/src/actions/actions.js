@@ -1,12 +1,9 @@
-export function setUser(user){
-  return{
-    type: "SET_USER",
-    payload: user
-  }
-}
+import {
+  createUser,
+  logout
+} from './userActions'
 
-export function logout(){
-  return{
-    type: "LOGOUT"
-  }
+export {
+  createUser,
+  logout
 }

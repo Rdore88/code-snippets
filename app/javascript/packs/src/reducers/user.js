@@ -2,6 +2,7 @@ import update from 'immutability-helper'
 
 const initial_state = {
   current_user: null,
+  user_errors: null
 }
 
 const user = function(state = initial_state, action){
@@ -18,9 +19,15 @@ const user = function(state = initial_state, action){
           $set: null
         }
       });
+    case "SET_USER_ERRORS":
+      return update(state, {
+        user_errors: {
+          $set: action.payload
+        }
+      });
     default:
       return state;
   }
 }
 
-export default user
+export {user}
