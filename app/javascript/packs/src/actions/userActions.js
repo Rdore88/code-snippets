@@ -49,11 +49,26 @@ const userLogin = (userInfo) => {
   return(dispatch) => {
     let options = {
       method: "POST",
-      body: JSON.stringify(userInfo)
+      body: JSON.stringify(userInfo),
       headers: {
         'Content-Type': 'application/json'
       }
     }
+
+    fetch('/api/authorization', options)
+    .then
+    (res => {
+      return res.json()
+    }).then(json => {
+      console.log(json);
+      if (json.status === "failed") {
+        return dispatch(setUserErrors(json.errors))
+      } else {
+        return dispatch(setUser(json.user))
+      }
+    }).catch(err => {
+      return dispatch(setUserErrors(err.messages))
+    })
   }
 }
 

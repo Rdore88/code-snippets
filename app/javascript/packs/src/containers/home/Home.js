@@ -7,7 +7,6 @@ class Home extends Component {
   }
 
   componentDidMount(){
-    console.log("WillMount", this.props);
     if (!this.props.user) {
       this.props.history.push('/signup')
     }

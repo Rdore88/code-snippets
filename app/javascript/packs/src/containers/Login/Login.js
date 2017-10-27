@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {userLogin} from '../../actions/actions.js'
 
 class LogIn extends Component{
   constructor(props){
@@ -19,39 +20,30 @@ class LogIn extends Component{
     this.setState({email: e.target.value})
   }
 
-  handleSubmit(e){
+  handleSubmit = (e) => {
     e.preventDefault()
-    var payload = {
-      user: {
-        email: this.state.email,
-        password: this.state.password
-      }
+    console.log(this);
+    let userObj = {
+      user: this.state
     }
-    fetch('api/authorization',{
-      method: 'POST',
-      body: JSON.stringify(payload),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then( (response) => {
-      return response.json()
-    }).then( (result) => {
-      if (result.redirect) {
-        this.contect.router.history.push({
-          pathname: '/',
-          state: {auth_token: result.auth_token}
-        })
-      }
-    })
+
+    console.log(this.props.userLogin(userObj));
+
+  }
+
+  componentDidUpdate(){
+    if (this.props.user) {
+      this.props.history.push('/')
+    }
   }
 
   render(){
     return(
       <form onSubmit={this.handleSubmit} className="login-form">
         <label htmlFor="email">Email:</label>
-        <input type="text" name="email" onChange={this.handleEmailChange} value={this.state.name} />
+        <input type="text" name="email" onChange={this.handleEmail} value={this.state.email} />
         <label htmlFor="password">Password:</label>
-        <input type="password" name="password" onChange={this.handlePasswordChange} />
+        <input type="password" name="password" onChange={this.handlePassword} value={this.state.password}/>
         <input type="submit" value="Submit" />
       </form>
     )
@@ -60,14 +52,14 @@ class LogIn extends Component{
 
 function mapStateToProps(state){
   return{
-
+    user: state.user.current_user
   }
 }
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-
-  })
+    userLogin: userLogin
+  }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn)

@@ -78,7 +78,6 @@ class SignUp extends Component {
 
 
 function mapStateToProps(state){
-  console.log("state!", state);
   return{
     user: state.user.current_user,
     userErrors: state.user.user_errors
