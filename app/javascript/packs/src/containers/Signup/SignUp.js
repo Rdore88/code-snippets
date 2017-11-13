@@ -59,10 +59,12 @@ class SignUp extends Component {
           {errorMessage}
         </div>
         <form onSubmit={this.handleSubmit} className="signup-form">
-          <label htmlFor="name">Name:</label>
-          <input type="text" name="name" onChange={this.handleName} value={this.state.username} />
+          <div className="form-group">
+            <label htmlFor="name">Name:</label>
+            <input className="form-control" type="text" name="name" onChange={this.handleName} value={this.state.username} />
+          </div>
           <label htmlFor="email">Email:</label>
-          <input type="text" name="email" onChange={this.handleEmail} value={this.state.email} />
+          <input type="email" name="email" onChange={this.handleEmail} value={this.state.email} />
           <label htmlFor="password">Password:</label>
           <input type="password" name="password" onChange={this.handlePassword} value={this.state.password} />
           <label htmlFor="password_confirmation">Password Confirmation:</label>

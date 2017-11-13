@@ -18,30 +18,44 @@ class NavBar extends Component {
     let changeNavBar;
     if (!this.props.user) {
       changeNavBar =
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <NavLink activeClassName="" className="nav-link" to="/">Home</NavLink>
-          </li>
-          <li class="nav-item">
-            <NavLink activeClassName="" className="nav-link" to="/signup">Sign Up</NavLink>
-          </li>
-          <li class="nav-item">
-            <NavLink activeClassName="" className="nav-link" to="/login">Login</NavLink>
-          </li>
-        </ul>
-      <span class="navbar-text">
-        Profile
-      </span>
-    </div>
-  </nav>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div className="collapse navbar-collapse" id="navbarText">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <NavLink activeClassName="active" className="nav-link" to="/">Home</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink activeClassName="active" className="nav-link" to="/signup">Sign Up</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink activeClassName="active" className="nav-link" to="/login">Login</NavLink>
+              </li>
+            </ul>
+          <span className="navbar-text">
+            Profile
+          </span>
+        </div>
+      </nav>
     } else {
       changeNavBar =
-      <div>
-      <NavLink activeClassName="active" className="nav-link" to="/">Home</NavLink>
-        <button onClick={this.handleLogout}>Logout</button>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="collapse navbar-collapse" id="navbarText">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <NavLink activeClassName="active" className="nav-link" to="/">Home</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink activeClassName="active" className="nav-link" to="/signup">Sign Up</NavLink>
+            </li>
+            <li className="nav-item">
+              <button className="nav-link" onClick={this.handleLogout}>Logout</button>
+            </li>
+          </ul>
+        <span className="navbar-text">
+          Profile
+        </span>
       </div>
+    </nav>
     }
     return (
       <div className="upperNavbar">
